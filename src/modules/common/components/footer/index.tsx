@@ -5,7 +5,7 @@ export function Footer() {
 
   return (
     <footer className="flex items-center justify-center">
-      <p>
+      <p className="py-2">
         &copy; {currentYear} {APP_NAME}. All rights reserved.
       </p>
     </footer>
