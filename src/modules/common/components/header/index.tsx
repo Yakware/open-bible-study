@@ -1,7 +1,7 @@
 "use client";
 import { APP_NAME } from "@/lib/constants";
 import Link from "next/link";
-import { login, logout } from "@/modules/auth/actions";
+import { logout } from "@/modules/auth/actions";
 import { Button } from "../ui/button";
 import { useIsAuthenticated } from "@/lib/context/auth-context";
 
@@ -18,11 +18,7 @@ export function Header() {
         <nav>
           <ul>
             <li>
-              {isAuthenticated ? (
-                <Button onClick={logout}>Logout</Button>
-              ) : (
-                <Button onClick={login}>Login</Button>
-              )}
+              {isAuthenticated && <Button onClick={logout}>Logout</Button>}
             </li>
           </ul>
         </nav>
