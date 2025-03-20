@@ -1,8 +1,5 @@
-// const login = async () => {
-//   "use server";
-//   await signIn(logtoConfig);
-// };
+import { HomePageTemplate } from "@/modules/website/templates/home-page-template";
 
-export default function Home() {
-  return <div></div>;
+export default function HomePage() {
+  return <HomePageTemplate />;
 }
