@@ -10,3 +10,10 @@ export async function login() {
 export async function logout() {
   await signOut(logtoConfig);
 }
+
+export async function register() {
+  await signIn(logtoConfig, {
+    firstScreen: "register",
+    redirectUri: logtoConfig.baseUrl + "/callback",
+  });
+}
