@@ -15,7 +15,7 @@ export function BookIcon() {
         ry="5"
         fill="#f8fafc"
         stroke="#94a3b8"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <rect
         x="-145"
@@ -26,7 +26,7 @@ export function BookIcon() {
         ry="3"
         fill="#ffffff"
         stroke="#cbd5e1"
-        stroke-width="1"
+        strokeWidth="1"
       />
 
       <rect x="-150" y="-120" width="20" height="240" fill="#94a3b8" />
@@ -37,7 +37,7 @@ export function BookIcon() {
           d="M-125,-100 L125,-100 L125,100 L-125,100 Z"
           fill="#ffffff"
           stroke="#e2e8f0"
-          stroke-width="1"
+          strokeWidth="1"
         />
         <line
           x1="-100"
@@ -45,7 +45,7 @@ export function BookIcon() {
           x2="100"
           y2="-70"
           stroke="#cbd5e1"
-          stroke-width="1"
+          strokeWidth="1"
         />
         <line
           x1="-100"
@@ -53,7 +53,7 @@ export function BookIcon() {
           x2="100"
           y2="-50"
           stroke="#cbd5e1"
-          stroke-width="1"
+          strokeWidth="1"
         />
         <line
           x1="-100"
@@ -61,7 +61,7 @@ export function BookIcon() {
           x2="100"
           y2="-30"
           stroke="#cbd5e1"
-          stroke-width="1"
+          strokeWidth="1"
         />
         <line
           x1="-100"
@@ -69,7 +69,7 @@ export function BookIcon() {
           x2="100"
           y2="-10"
           stroke="#cbd5e1"
-          stroke-width="1"
+          strokeWidth="1"
         />
         <line
           x1="-100"
@@ -77,7 +77,7 @@ export function BookIcon() {
           x2="100"
           y2="10"
           stroke="#cbd5e1"
-          stroke-width="1"
+          strokeWidth="1"
         />
         <line
           x1="-100"
@@ -85,7 +85,7 @@ export function BookIcon() {
           x2="100"
           y2="30"
           stroke="#cbd5e1"
-          stroke-width="1"
+          strokeWidth="1"
         />
         <line
           x1="-100"
@@ -93,7 +93,7 @@ export function BookIcon() {
           x2="100"
           y2="50"
           stroke="#cbd5e1"
-          stroke-width="1"
+          strokeWidth="1"
         />
         <line
           x1="-100"
@@ -101,7 +101,7 @@ export function BookIcon() {
           x2="100"
           y2="70"
           stroke="#cbd5e1"
-          stroke-width="1"
+          strokeWidth="1"
         />
       </g>
 
