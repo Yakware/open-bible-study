@@ -1,10 +1,12 @@
-export function BookIcon() {
+import { CommonIconProps } from "./common-icon-props";
+
+export function BookIcon({ size = 50 }: CommonIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-200 -150 400 300"
-      width={500}
-      height={500}
+      width={size}
+      height={size}
     >
       <rect
         x="-150"
