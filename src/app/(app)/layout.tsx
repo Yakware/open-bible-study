@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { AppHeader } from "@/modules/common/components/app-header";
 import { useIsAuthenticated } from "@/lib/context/auth-context";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 type AppLayoutProps = {
   children: ReactNode;
@@ -18,14 +19,16 @@ export default function AppLayout({ children }: AppLayoutProps) {
   }
 
   return (
-    <div className="flex">
-      <SidebarProvider>
-        <AppSidebar />
-        <main className="flex-1">
-          <AppHeader />
-          {children}
-        </main>
-      </SidebarProvider>
-    </div>
+    <NuqsAdapter>
+      <div className="flex">
+        <SidebarProvider>
+          <AppSidebar />
+          <main className="flex-1">
+            <AppHeader />
+            {children}
+          </main>
+        </SidebarProvider>
+      </div>
+    </NuqsAdapter>
   );
 }
