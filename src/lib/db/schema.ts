@@ -8,7 +8,7 @@ export const versions = pgTable("versions", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: text().notNull(),
   abbreviation: text().notNull(),
-  language: text().notNull(),
+  language: text(),
   description: text(),
   created_at: timestamp().notNull().defaultNow(),
 });
@@ -30,6 +30,7 @@ export const books = pgTable(
     name: text().notNull(),
     abbreviation: text().notNull(),
     position: integer().notNull(),
+    testament: text().notNull(),
     created_at: timestamp().notNull().defaultNow(),
   },
   (table) => [index("books_version_id_idx").on(table.version_id)]
