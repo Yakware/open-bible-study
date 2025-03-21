@@ -2,7 +2,7 @@
 import { APP_NAME } from "@/lib/constants";
 import Link from "next/link";
 import { logout } from "@/modules/auth/actions";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { useIsAuthenticated } from "@/lib/context/auth-context";
 
 export function Header() {
@@ -16,10 +16,21 @@ export function Header() {
         </h1>
 
         <nav>
-          <ul>
-            <li>
-              {isAuthenticated && <Button onClick={logout}>Logout</Button>}
-            </li>
+          <ul className="flex items-center gap-4">
+            {isAuthenticated && (
+              <>
+                <li>
+                  <Link href="/study" className={buttonVariants()}>
+                    Go to App
+                  </Link>
+                </li>
+                <li>
+                  <Button variant="outline" onClick={logout}>
+                    Logout
+                  </Button>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </div>

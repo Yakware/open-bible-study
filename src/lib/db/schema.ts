@@ -1,4 +1,4 @@
-import { relations } from "drizzle-orm";
+import { InferSelectModel, relations } from "drizzle-orm";
 import { integer, pgTable, text, timestamp, index } from "drizzle-orm/pg-core";
 
 /**
@@ -8,7 +8,7 @@ export const versions = pgTable("versions", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: text().notNull(),
   abbreviation: text().notNull(),
-  language: text().notNull(),
+  language: text(),
   description: text(),
   created_at: timestamp().notNull().defaultNow(),
 });
@@ -16,6 +16,8 @@ export const versions = pgTable("versions", {
 export const versionsRelations = relations(versions, ({ many }) => ({
   books: many(books),
 }));
+
+export type Version = InferSelectModel<typeof versions>;
 
 /**
  * Books
@@ -30,6 +32,7 @@ export const books = pgTable(
     name: text().notNull(),
     abbreviation: text().notNull(),
     position: integer().notNull(),
+    testament: text().notNull(),
     created_at: timestamp().notNull().defaultNow(),
   },
   (table) => [index("books_version_id_idx").on(table.version_id)]
@@ -42,6 +45,8 @@ export const booksRelations = relations(books, ({ one, many }) => ({
   }),
   chapters: many(chapters),
 }));
+
+export type Book = InferSelectModel<typeof books>;
 
 /**
  * Chapters
@@ -68,6 +73,8 @@ export const chaptersRelations = relations(chapters, ({ one, many }) => ({
   verses: many(verses),
 }));
 
+export type Chapter = InferSelectModel<typeof chapters>;
+
 /**
  * Verses
  */
@@ -91,3 +98,5 @@ export const versesRelations = relations(verses, ({ one }) => ({
     references: [chapters.id],
   }),
 }));
+
+export type Verse = InferSelectModel<typeof verses>;
