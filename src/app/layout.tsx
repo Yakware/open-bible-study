@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { APP_NAME } from "@/lib/constants";
-import "./globals.css";
 import { AuthContextProvider } from "@/lib/context/auth-context";
 import { getLogtoContext } from "@logto/next/server-actions";
 import { logtoConfig } from "./logto";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: APP_NAME,
