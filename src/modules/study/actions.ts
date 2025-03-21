@@ -1,16 +1,24 @@
 "use server";
-
 import { db } from "@/lib/db";
 import { books, chapters, verses, versions } from "@/lib/db/schema";
 import { checkAuthenticated } from "@/utils/server-utils";
 import { eq } from "drizzle-orm";
+import { unstable_cache } from "next/cache";
 
 export async function getVersions() {
   await checkAuthenticated();
 
-  const data = await db.select().from(versions);
+  const cachedData = unstable_cache(
+    async () => {
+      const data = await db.select().from(versions);
 
-  return data;
+      return data;
+    },
+    ["versions"],
+    { revalidate: 3600 }
+  );
+
+  return cachedData();
 }
 
 export async function getBooks(versionId: number) {
@@ -20,13 +28,21 @@ export async function getBooks(versionId: number) {
     return [];
   }
 
-  const data = await db
-    .select()
-    .from(books)
-    .where(eq(books.version_id, versionId))
-    .orderBy(books.position);
+  const cachedData = unstable_cache(
+    async (versionId: number) => {
+      const data = await db
+        .select()
+        .from(books)
+        .where(eq(books.version_id, versionId))
+        .orderBy(books.position);
 
-  return data;
+      return data;
+    },
+    ["books"],
+    { revalidate: 3600 }
+  );
+
+  return cachedData(versionId);
 }
 
 export async function getChapters(bookId: number) {
@@ -36,13 +52,21 @@ export async function getChapters(bookId: number) {
     return [];
   }
 
-  const data = await db
-    .select()
-    .from(chapters)
-    .where(eq(chapters.book_id, bookId))
-    .orderBy(chapters.position);
+  const cachedData = unstable_cache(
+    async (bookId: number) => {
+      const data = await db
+        .select()
+        .from(chapters)
+        .where(eq(chapters.book_id, bookId))
+        .orderBy(chapters.position);
 
-  return data;
+      return data;
+    },
+    ["chapters"],
+    { revalidate: 3600 }
+  );
+
+  return cachedData(bookId);
 }
 
 export async function getVerses(chapterId: number) {
@@ -52,11 +76,19 @@ export async function getVerses(chapterId: number) {
     return [];
   }
 
-  const data = await db
-    .select()
-    .from(verses)
-    .where(eq(verses.chapter_id, chapterId))
-    .orderBy(verses.number);
+  const cachedData = unstable_cache(
+    async (chapterId: number) => {
+      const data = await db
+        .select()
+        .from(verses)
+        .where(eq(verses.chapter_id, chapterId))
+        .orderBy(verses.number);
 
-  return data;
+      return data;
+    },
+    ["chapters"],
+    { revalidate: 3600 }
+  );
+
+  return cachedData(chapterId);
 }
