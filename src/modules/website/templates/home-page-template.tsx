@@ -1,9 +1,13 @@
+"use client";
+import { useIsAuthenticated } from "@/lib/context/auth-context";
 import { login, register } from "@/modules/auth/actions";
 import { Button } from "@/modules/common/components/ui/button";
 import { Card, CardContent } from "@/modules/common/components/ui/card";
 import { BookIcon } from "@/modules/common/icons/book-icon";
 
 export function HomePageTemplate() {
+  const isAuthenticated = useIsAuthenticated();
+
   return (
     <div className="flex flex-1 items-center justify-center">
       <Card className="container mx-auto max-w-3xl">
@@ -24,13 +28,17 @@ export function HomePageTemplate() {
               <li>Verse Annotations</li>
             </ul>
 
-            <Button onClick={register}>Sign Up for Free</Button>
-            <div className="flex items-center gap-1">
-              <p>Already have an account?</p>
-              <Button variant="link" className="p-0" onClick={login}>
-                Login
-              </Button>
-            </div>
+            {!isAuthenticated && (
+              <>
+                <Button onClick={register}>Sign Up for Free</Button>
+                <div className="flex items-center gap-1">
+                  <p>Already have an account?</p>
+                  <Button variant="link" className="p-0" onClick={login}>
+                    Login
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
         </CardContent>
       </Card>
