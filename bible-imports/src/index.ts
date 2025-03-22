@@ -1,7 +1,7 @@
-import { syncDataToPostgres } from "./utils/syncToPostgres";
+import { runKjvEtl } from "./utils/run-kjv-etl";
 
 async function main() {
-  await syncDataToPostgres();
+  await runKjvEtl();
 }
 
 main();

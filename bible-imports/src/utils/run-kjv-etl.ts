@@ -19,12 +19,23 @@ type BookJson = {
   chapters: ChapterJson[];
 };
 
-export const syncDataToPostgres = async () => {
+export const runKjvEtl = async () => {
+  // const data = await db
+  //   .select({
+  //     id: versions.id,
+  //   })
+  //   .from(versions)
+
   const data = await db
-    .select({
-      id: versions.id,
+    .insert(versions)
+    .values({
+      name: "King James Version",
+      abbreviation: "KJV",
+      language: "en",
+      description:
+        "The King James Version (KJV) of the Bible, published in 1611, is an English translation commissioned by King James I of England. It's known for its majestic, poetic language and has had profound influence on English literature and culture. The KJV contains 66 books divided into the Old Testament (39 books) and New Testament (27 books), covering creation, ancient Hebrew history, prophecies, the life and teachings of Jesus, and the early Christian church. For over 400 years, it has remained one of the most widely read and quoted Bible translations, valued for its literary beauty even as newer translations have emerged that use more contemporary language.",
     })
-    .from(versions);
+    .returning({ id: versions.id });
 
   const kjvVersionId = data?.[0]?.id;
   if (!kjvVersionId) {
