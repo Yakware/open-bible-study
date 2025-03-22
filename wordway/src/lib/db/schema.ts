@@ -1,12 +1,19 @@
 import { InferSelectModel, relations } from "drizzle-orm";
-import { integer, pgTable, text, timestamp, index } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgTable,
+  text,
+  timestamp,
+  index,
+  uniqueIndex,
+} from "drizzle-orm/pg-core";
 
 /**
  * Versions
  */
 export const versions = pgTable("versions", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: text().notNull(),
+  name: text().notNull().unique(),
   abbreviation: text().notNull(),
   language: text(),
   description: text(),
@@ -35,7 +42,10 @@ export const books = pgTable(
     testament: text().notNull(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
   },
-  (table) => [index("books_version_id_idx").on(table.versionId)]
+  (table) => [
+    index("books_version_id_idx").on(table.versionId),
+    uniqueIndex("books_version_name_idx").on(table.versionId, table.name),
+  ]
 );
 
 export const booksRelations = relations(books, ({ one, many }) => ({
@@ -62,7 +72,10 @@ export const chapters = pgTable(
     position: integer().notNull(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
   },
-  (table) => [index("chapters_book_id_idx").on(table.bookId)]
+  (table) => [
+    index("chapters_book_id_idx").on(table.bookId),
+    uniqueIndex("chapters_book_number_idx").on(table.bookId, table.number),
+  ]
 );
 
 export const chaptersRelations = relations(chapters, ({ one, many }) => ({
@@ -87,9 +100,12 @@ export const verses = pgTable(
       .references(() => chapters.id, { onDelete: "cascade" }),
     number: integer().notNull(),
     text: text().notNull(),
-    created_at: timestamp().notNull().defaultNow(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
   },
-  (table) => [index("verses_chapter_id_idx").on(table.chapterId)]
+  (table) => [
+    index("verses_chapter_id_idx").on(table.chapterId),
+    uniqueIndex("verses_chapter_number_idx").on(table.chapterId, table.number),
+  ]
 );
 
 export const versesRelations = relations(verses, ({ one }) => ({
