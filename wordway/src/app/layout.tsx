@@ -4,6 +4,7 @@ import { AuthContextProvider } from "@/lib/context/auth-context";
 import { getLogtoContext } from "@logto/next/server-actions";
 import { logtoConfig } from "./logto";
 import "./globals.css";
+import { TooltipProvider } from "@/modules/common/components/ui/tooltip";
 
 export const metadata: Metadata = {
   title: APP_NAME,
@@ -21,7 +22,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <AuthContextProvider isAuthenticated={isAuthenticated}>
-          {children}
+          <TooltipProvider>{children}</TooltipProvider>
         </AuthContextProvider>
       </body>
     </html>
