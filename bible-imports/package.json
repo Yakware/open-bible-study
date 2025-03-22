@@ -1,25 +1,23 @@
 {
-  "name": "wordway-scripts",
+  "name": "@wordway/bible-imports",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node --transpile-only --project ./tsconfig.json -r dotenv/config src/index.ts"
+    "start": "npm run db:pull && tsx -r dotenv/config src/index.ts",
+    "db:pull": "drizzle-kit pull"
   },
-  "keywords": [],
   "author": "",
-  "license": "ISC",
   "description": "",
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.1",
-    "@types/node": "^22.13.9",
-    "dotenv": "^16.4.7",
     "drizzle-orm": "^0.40.1",
-    "pg": "^8.14.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.2"
+    "pg": "^8.14.1"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.30.5"
+    "@types/node": "^22.13.11",
+    "@types/pg": "^8.11.11",
+    "dotenv": "^16.4.7",
+    "drizzle-kit": "^0.30.5",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
   }
 }

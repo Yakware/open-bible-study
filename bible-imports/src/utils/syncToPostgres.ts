@@ -1,8 +1,8 @@
 import fs from "fs/promises";
-import bookNames from "../data/book-names.json";
 import path from "path";
-import { db } from "../db";
-import { books, chapters, verses, versions } from "../db/schema";
+import { db } from "../lib/db";
+import { books, chapters, verses, versions } from "../lib/db/schema";
+import bookNames from "../data/book-names.json";
 
 type VerseJson = {
   verse: string;
@@ -44,7 +44,7 @@ export const syncDataToPostgres = async () => {
         .values({
           name: bookName.name,
           abbreviation: bookName.abbreviation,
-          version_id: kjvVersionId,
+          versionId: kjvVersionId,
           position: bookIndex,
           testament: bookName.testament,
         })
@@ -64,7 +64,7 @@ export const syncDataToPostgres = async () => {
             .values({
               position: chapterIndex,
               number: chapterC.chapter,
-              book_id: newBookId,
+              bookId: newBookId,
             })
             .returning({
               id: chapters.id,
@@ -74,7 +74,7 @@ export const syncDataToPostgres = async () => {
           const allVerses = chapterC.verses.map((verseC, verseIndex) => ({
             number: parseInt(verseC.verse),
             text: verseC.text,
-            chapter_id: chapterId,
+            chapterId: chapterId,
             position: verseIndex,
           }));
 

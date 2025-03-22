@@ -10,10 +10,8 @@
     "dev": "concurrently --prefix-colors \"bgBlue.bold,bgGreen.bold\" \"npm:dev:*\"",
     "lint": "eslint src/**/*.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "Wordway Team",
+  "description": "WebSocket server delivering DB updates",
   "dependencies": {
     "pino": "^9.6.0",
     "pino-pretty": "^13.0.0",

@@ -9,8 +9,11 @@ node_modules/
 !.yarn/releases
 !.yarn/versions
 
+build/
+dist/
+
 # testing
-/coverage
+coverage/
 
 # misc
 .DS_Store
