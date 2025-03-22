@@ -4,28 +4,27 @@ import {
   NavigationMenuLink,
   NavigationMenuTrigger,
 } from "@/modules/common/components/ui/navigation-menu";
-import { parseAsInteger, useQueryState } from "nuqs";
+import { useQueryState } from "nuqs";
 import { useChapters } from "@/lib/context/study-context";
 
 export function ChapterNavigation() {
   const chapters = useChapters();
-  const [chapterId, setChapterId] = useQueryState("chapter", {
-    ...parseAsInteger,
+  const [chapterNumber, setChapterNumber] = useQueryState("chapter", {
     shallow: false,
   });
-
-  const selectedChapter = chapters.find((chapter) => chapter.id === chapterId);
 
   return (
     <NavigationMenuItem>
       <NavigationMenuTrigger>
-        {selectedChapter ? selectedChapter.number : "Chapter"}
+        {chapterNumber ? chapterNumber : "Chapter"}
       </NavigationMenuTrigger>
       <NavigationMenuContent>
         <ul className="grid grid-cols-6 gap-3 p-4 md:w-[400px] lg:w-[500px]">
           {chapters.map((chapter) => (
             <li key={chapter.id}>
-              <NavigationMenuLink onClick={() => setChapterId(chapter.id)}>
+              <NavigationMenuLink
+                onClick={() => setChapterNumber(chapter.number)}
+              >
                 {chapter.number}
               </NavigationMenuLink>
             </li>

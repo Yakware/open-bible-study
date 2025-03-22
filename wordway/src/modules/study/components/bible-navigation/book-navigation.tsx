@@ -4,28 +4,30 @@ import {
   NavigationMenuLink,
   NavigationMenuTrigger,
 } from "@/modules/common/components/ui/navigation-menu";
-import { parseAsInteger, useQueryState } from "nuqs";
 import { useBooks } from "@/lib/context/study-context";
+import { useBookName } from "./hooks/use-book-name";
+import { useChapterNumber } from "./hooks/use-chapter-number";
 
 export function BookNavigation() {
   const books = useBooks();
-  const [bookId, setBookId] = useQueryState("book", {
-    ...parseAsInteger,
-    shallow: false,
-  });
+  const [bookName, setBookName] = useBookName();
+  const [, setChapterNumber] = useChapterNumber();
 
-  const selectedBook = books.find((book) => book.id === bookId);
+  const updateBookName = (book: string) => {
+    setBookName(book);
+    setChapterNumber("1");
+  };
 
   return (
     <NavigationMenuItem>
       <NavigationMenuTrigger>
-        {selectedBook ? selectedBook.abbreviation : "Book"}
+        {bookName ? bookName : "Book"}
       </NavigationMenuTrigger>
       <NavigationMenuContent>
         <ul className="grid grid-cols-3 gap-1 p-4 md:w-[400px] lg:w-[500px]">
           {books.map((book) => (
             <li key={book.id}>
-              <NavigationMenuLink onClick={() => setBookId(book.id)}>
+              <NavigationMenuLink onClick={() => updateBookName(book.name)}>
                 {book.name}
               </NavigationMenuLink>
             </li>
