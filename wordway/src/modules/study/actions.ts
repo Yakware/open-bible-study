@@ -33,7 +33,7 @@ export async function getBooks(versionId: number) {
       const data = await db
         .select()
         .from(books)
-        .where(eq(books.version_id, versionId))
+        .where(eq(books.versionId, versionId))
         .orderBy(books.position);
 
       return data;
@@ -57,7 +57,7 @@ export async function getChapters(bookId: number) {
       const data = await db
         .select()
         .from(chapters)
-        .where(eq(chapters.book_id, bookId))
+        .where(eq(chapters.bookId, bookId))
         .orderBy(chapters.position);
 
       return data;
@@ -81,7 +81,7 @@ export async function getVerses(chapterId: number) {
       const data = await db
         .select()
         .from(verses)
-        .where(eq(verses.chapter_id, chapterId))
+        .where(eq(verses.chapterId, chapterId))
         .orderBy(verses.number);
 
       return data;
