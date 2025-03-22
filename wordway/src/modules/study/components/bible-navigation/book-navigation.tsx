@@ -7,11 +7,13 @@ import {
 import { useBooks } from "@/lib/context/study-context";
 import { useBookName } from "./hooks/use-book-name";
 import { useChapterNumber } from "./hooks/use-chapter-number";
+import { useVersionName } from "./hooks/use-version-name";
 
 export function BookNavigation() {
   const books = useBooks();
   const [bookName, setBookName] = useBookName();
   const [, setChapterNumber] = useChapterNumber();
+  const [versionName] = useVersionName();
 
   const updateBookName = (book: string) => {
     setBookName(book);
@@ -20,7 +22,7 @@ export function BookNavigation() {
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger>
+      <NavigationMenuTrigger className="rounded-4xl" disabled={!versionName}>
         {bookName ? bookName : "Book"}
       </NavigationMenuTrigger>
       <NavigationMenuContent>

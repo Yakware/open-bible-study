@@ -4,18 +4,18 @@ import {
   NavigationMenuLink,
   NavigationMenuTrigger,
 } from "@/modules/common/components/ui/navigation-menu";
-import { useQueryState } from "nuqs";
 import { useChapters } from "@/lib/context/study-context";
+import { useChapterNumber } from "./hooks/use-chapter-number";
+import { useBookName } from "./hooks/use-book-name";
 
 export function ChapterNavigation() {
   const chapters = useChapters();
-  const [chapterNumber, setChapterNumber] = useQueryState("chapter", {
-    shallow: false,
-  });
+  const [chapterNumber, setChapterNumber] = useChapterNumber();
+  const [bookName] = useBookName();
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger>
+      <NavigationMenuTrigger className="rounded-4xl" disabled={!bookName}>
         {chapterNumber ? chapterNumber : "Chapter"}
       </NavigationMenuTrigger>
       <NavigationMenuContent>

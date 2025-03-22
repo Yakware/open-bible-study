@@ -4,18 +4,16 @@ import {
   NavigationMenuLink,
   NavigationMenuTrigger,
 } from "@/modules/common/components/ui/navigation-menu";
-import { useQueryState } from "nuqs";
 import { useVersions } from "@/lib/context/study-context";
+import { useVersionName } from "./hooks/use-version-name";
 
 export function VersionNavigation() {
   const versions = useVersions();
-  const [versionName, setVersionName] = useQueryState("version", {
-    shallow: false,
-  });
+  const [versionName, setVersionName] = useVersionName();
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger>
+      <NavigationMenuTrigger className="rounded-4xl">
         {versionName ? versionName : "Version"}
       </NavigationMenuTrigger>
       <NavigationMenuContent>
