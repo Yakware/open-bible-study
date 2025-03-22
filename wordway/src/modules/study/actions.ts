@@ -2,7 +2,7 @@
 import { db } from "@/lib/db";
 import { books, chapters, verses, versions } from "@/lib/db/schema";
 import { checkAuthenticated } from "@/utils/server-utils";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 
 export async function getVersions() {
@@ -14,81 +14,117 @@ export async function getVersions() {
 
       return data;
     },
-    ["versions"],
+    [],
     { revalidate: 3600 }
   );
 
   return cachedData();
 }
 
-export async function getBooks(versionId: number) {
+export async function getBooks(versionName: string) {
   await checkAuthenticated();
 
-  if (!versionId || isNaN(versionId)) {
+  if (!versionName) {
     return [];
   }
 
   const cachedData = unstable_cache(
-    async (versionId: number) => {
+    async (versionName: string) => {
       const data = await db
-        .select()
+        .select({
+          id: books.id,
+          name: books.name,
+          versionId: books.versionId,
+          abbreviation: books.abbreviation,
+          position: books.position,
+          testament: books.testament,
+          createdAt: books.createdAt,
+        })
         .from(books)
-        .where(eq(books.versionId, versionId))
+        .innerJoin(versions, eq(books.versionId, versions.id))
+        .where(eq(versions.name, versionName))
         .orderBy(books.position);
 
       return data;
     },
-    ["books"],
+    [],
     { revalidate: 3600 }
   );
 
-  return cachedData(versionId);
+  return cachedData(versionName);
 }
 
-export async function getChapters(bookId: number) {
+export async function getChapters(versionName: string, bookName: string) {
   await checkAuthenticated();
 
-  if (!bookId || isNaN(bookId)) {
+  if (!bookName || !versionName) {
     return [];
   }
 
   const cachedData = unstable_cache(
-    async (bookId: number) => {
+    async (versionName: string, bookName: string) => {
       const data = await db
-        .select()
+        .select({
+          id: chapters.id,
+          bookId: chapters.bookId,
+          number: chapters.number,
+          position: chapters.position,
+          createdAt: chapters.createdAt,
+        })
         .from(chapters)
-        .where(eq(chapters.bookId, bookId))
+        .innerJoin(books, eq(chapters.bookId, books.id))
+        .innerJoin(versions, eq(books.versionId, versions.id))
+        .where(and(eq(versions.name, versionName), eq(books.name, bookName)))
         .orderBy(chapters.position);
 
       return data;
     },
-    ["chapters"],
+    [],
     { revalidate: 3600 }
   );
 
-  return cachedData(bookId);
+  return cachedData(versionName, bookName);
 }
 
-export async function getVerses(chapterId: number) {
+export async function getVerses(
+  versionName: string,
+  bookName: string,
+  chapterNumber: string
+) {
   await checkAuthenticated();
 
-  if (!chapterId || isNaN(chapterId)) {
+  if (!chapterNumber) {
     return [];
   }
 
   const cachedData = unstable_cache(
-    async (chapterId: number) => {
+    async (versionName: string, bookName: string, chapterNumber: string) => {
       const data = await db
-        .select()
+        .select({
+          id: verses.id,
+          chapterId: verses.chapterId,
+          number: verses.number,
+          text: verses.text,
+          createdAt: verses.createdAt,
+        })
         .from(verses)
-        .where(eq(verses.chapterId, chapterId))
+        .innerJoin(chapters, eq(verses.chapterId, chapters.id))
+        .innerJoin(books, eq(chapters.bookId, books.id))
+        .innerJoin(versions, eq(books.versionId, versions.id))
+        .where(
+          and(
+            eq(versions.name, versionName),
+            eq(books.name, bookName),
+            eq(chapters.number, chapterNumber)
+          )
+        )
         .orderBy(verses.number);
 
       return data;
     },
-    ["chapters"],
+    [],
     { revalidate: 3600 }
   );
 
-  return cachedData(chapterId);
+  return cachedData(versionName, bookName, chapterNumber);
 }
