@@ -3,10 +3,10 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardTitle,
 } from "@/modules/common/components/ui/card";
 import { Bible } from "../components/bible";
 import { BibleNavigation } from "../components/bible-navigation";
+import { StudyTools } from "../components/study-tools";
 
 export function StudyPageTemplate() {
   return (
@@ -21,10 +21,9 @@ export function StudyPageTemplate() {
       </Card>
 
       <Card className="p-4 flex-1 max-w-sm rounded">
-        <CardHeader className="p-0">
-          <CardTitle>Study Tools</CardTitle>
-        </CardHeader>
-        <CardContent className="p-0"></CardContent>
+        <CardContent className="p-0">
+          <StudyTools />
+        </CardContent>
       </Card>
     </div>
   );
