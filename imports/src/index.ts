@@ -1,7 +1,7 @@
-import { syncBooksToSupabase } from "./utils/supabase";
+import { syncDataToPostgres } from "./utils/syncToPostgres";
 
 async function main() {
-  await syncBooksToSupabase();
+  await syncDataToPostgres();
 }
 
 main();

@@ -1,7 +1,6 @@
 import fs from "fs/promises";
 import bookNames from "../data/book-names.json";
 import path from "path";
-import { supabase } from "./supabase-client";
 import { db } from "../db";
 import { books, chapters, verses, versions } from "../db/schema";
 
@@ -20,7 +19,7 @@ type BookJson = {
   chapters: ChapterJson[];
 };
 
-export const syncBooksToSupabase = async () => {
+export const syncDataToPostgres = async () => {
   const data = await db
     .select({
       id: versions.id,
