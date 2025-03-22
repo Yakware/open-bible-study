@@ -1,12 +1,19 @@
 import { InferSelectModel, relations } from "drizzle-orm";
-import { integer, pgTable, text, timestamp, index } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgTable,
+  text,
+  timestamp,
+  index,
+  uniqueIndex,
+} from "drizzle-orm/pg-core";
 
 /**
  * Versions
  */
 export const versions = pgTable("versions", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: text().notNull(),
+  name: text().notNull().unique(),
   abbreviation: text().notNull(),
   language: text(),
   description: text(),
@@ -26,21 +33,24 @@ export const books = pgTable(
   "books",
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    version_id: integer()
+    versionId: integer("version_id")
       .notNull()
       .references(() => versions.id, { onDelete: "cascade" }),
     name: text().notNull(),
     abbreviation: text().notNull(),
     position: integer().notNull(),
     testament: text().notNull(),
-    created_at: timestamp().notNull().defaultNow(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
   },
-  (table) => [index("books_version_id_idx").on(table.version_id)]
+  (table) => [
+    index("books_version_id_idx").on(table.versionId),
+    uniqueIndex("books_version_name_idx").on(table.versionId, table.name),
+  ]
 );
 
 export const booksRelations = relations(books, ({ one, many }) => ({
   version: one(versions, {
-    fields: [books.version_id],
+    fields: [books.versionId],
     references: [versions.id],
   }),
   chapters: many(chapters),
@@ -55,19 +65,22 @@ export const chapters = pgTable(
   "chapters",
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    book_id: integer()
+    bookId: integer("book_id")
       .notNull()
       .references(() => books.id, { onDelete: "cascade" }),
     number: text().notNull(),
     position: integer().notNull(),
-    created_at: timestamp().notNull().defaultNow(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
   },
-  (table) => [index("chapters_book_id_idx").on(table.book_id)]
+  (table) => [
+    index("chapters_book_id_idx").on(table.bookId),
+    uniqueIndex("chapters_book_number_idx").on(table.bookId, table.number),
+  ]
 );
 
 export const chaptersRelations = relations(chapters, ({ one, many }) => ({
   book: one(books, {
-    fields: [chapters.book_id],
+    fields: [chapters.bookId],
     references: [books.id],
   }),
   verses: many(verses),
@@ -82,19 +95,22 @@ export const verses = pgTable(
   "verses",
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    chapter_id: integer()
+    chapterId: integer("chapter_id")
       .notNull()
       .references(() => chapters.id, { onDelete: "cascade" }),
     number: integer().notNull(),
     text: text().notNull(),
-    created_at: timestamp().notNull().defaultNow(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
   },
-  (table) => [index("verses_chapter_id_idx").on(table.chapter_id)]
+  (table) => [
+    index("verses_chapter_id_idx").on(table.chapterId),
+    uniqueIndex("verses_chapter_number_idx").on(table.chapterId, table.number),
+  ]
 );
 
 export const versesRelations = relations(verses, ({ one }) => ({
   chapter: one(chapters, {
-    fields: [verses.chapter_id],
+    fields: [verses.chapterId],
     references: [chapters.id],
   }),
 }));

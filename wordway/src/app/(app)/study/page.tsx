@@ -16,9 +16,13 @@ export default async function StudyPage({ searchParams }: StudyPageProps) {
 
   const [versions, books, chapters, verses] = await Promise.all([
     getVersions(),
-    getBooks(Number(params?.version)),
-    getChapters(Number(params?.book)),
-    getVerses(Number(params?.chapter)),
+    getBooks(String(params?.version)),
+    getChapters(String(params?.version), String(params?.book)),
+    getVerses(
+      String(params?.version),
+      String(params?.book),
+      String(params?.chapter)
+    ),
   ]);
 
   return (
