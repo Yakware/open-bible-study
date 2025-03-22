@@ -35,7 +35,7 @@ export const syncDataToPostgres = async () => {
     bookNames.map(async (bookName, bookIndex) => {
       const fileName = bookName.name.replace(/ /g, "-") + ".json";
       const rawJson = await fs.readFile(
-        path.join(__dirname, "..", "data", "books", fileName)
+        path.join(__dirname, "..", "data", "kjv", fileName)
       );
       const bookJson: BookJson = JSON.parse(rawJson.toString());
 
