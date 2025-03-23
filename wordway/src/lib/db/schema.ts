@@ -9,6 +9,26 @@ import {
 } from "drizzle-orm/pg-core";
 
 /**
+ * Users
+ */
+export const users = pgTable(
+  "users",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    email: text().notNull(),
+    firstName: text("first_name").notNull(),
+    lastName: text("last_name").notNull(),
+    username: text().notNull(),
+    externalUserId: text("external_user_id").notNull(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+  },
+  (table) => [
+    index("users_external_user_id_idx").on(table.externalUserId),
+    uniqueIndex("users_email_idx").on(table.email),
+  ]
+);
+
+/**
  * Versions
  */
 export const versions = pgTable("versions", {
