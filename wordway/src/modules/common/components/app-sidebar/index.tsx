@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/utils/cn";
+import { WordwayIcon } from "../../icons/wordway-icon";
 
 const menuItems = [
   {
@@ -56,7 +57,8 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader>
+      <SidebarHeader className="flex flex-row items-center gap-0">
+        <WordwayIcon size={30} />
         <h1 className="text-primary font-bold text-2xl px-1">{APP_NAME}</h1>
       </SidebarHeader>
       <SidebarContent>
