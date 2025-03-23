@@ -1,11 +1,10 @@
 "use client";
 import { AppSidebar } from "@/modules/common/components/app-sidebar";
-import { SidebarProvider } from "@/modules/common/components/ui/sidebar";
 import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { AppHeader } from "@/modules/common/components/app-header";
 import { useIsAuthenticated } from "@/lib/context/auth-context";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Providers } from "@/lib/providers";
 
 type AppLayoutProps = {
   children: ReactNode;
@@ -19,16 +18,14 @@ export default function AppLayout({ children }: AppLayoutProps) {
   }
 
   return (
-    <NuqsAdapter>
-      <div className="flex">
-        <SidebarProvider>
-          <AppSidebar />
-          <main className="flex-1">
-            <AppHeader />
-            {children}
-          </main>
-        </SidebarProvider>
+    <Providers>
+      <div className="flex w-full">
+        <AppSidebar />
+        <main className="flex-1">
+          <AppHeader />
+          {children}
+        </main>
       </div>
-    </NuqsAdapter>
+    </Providers>
   );
 }

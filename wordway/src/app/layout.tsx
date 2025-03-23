@@ -3,7 +3,6 @@ import { APP_NAME } from "@/lib/constants";
 import { AuthContextProvider } from "@/lib/context/auth-context";
 import { getLogtoContext } from "@logto/next/server-actions";
 import { logtoConfig } from "./logto";
-import { TooltipProvider } from "@/modules/common/components/ui/tooltip";
 import { reading, sans } from "./fonts";
 import "./globals.css";
 
@@ -28,7 +27,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${sans.variable} ${reading.variable} antialiased`}>
         <AuthContextProvider isAuthenticated={isAuthenticated}>
-          <TooltipProvider>{children}</TooltipProvider>
+          {children}
         </AuthContextProvider>
       </body>
     </html>
