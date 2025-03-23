@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     icon: "/favicon-32x32.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/site.manifest",
+  manifest: "/site.webmanifest",
 };
 
 export default async function RootLayout({
