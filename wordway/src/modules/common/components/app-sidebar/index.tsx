@@ -57,7 +57,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader className="flex flex-row items-center gap-0">
+      <SidebarHeader className="flex flex-row items-center justify-center gap-0">
         <WordwayIcon size={30} />
         <h1 className="text-primary font-bold text-2xl px-1">{APP_NAME}</h1>
       </SidebarHeader>
