@@ -1,48 +1,35 @@
+import { useMemo } from "react";
 import { useChapters } from "@/lib/context/study-context";
 import { Button } from "@/modules/common/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useChapterNumber } from "../bible-navigation/hooks/use-chapter-number";
-import { useMemo } from "react";
 
 export function FooterNavigation() {
   const [currentChapter, setChapterNumber] = useChapterNumber();
   const chapters = useChapters();
 
-  const previousChapter = useMemo(() => {
+  const { previousChapter, nextChapter } = useMemo(() => {
     const chapterIndex = chapters.findIndex(
       (chapter) => chapter.number === currentChapter
     );
 
-    if (chapterIndex === 0) {
-      return null;
-    } else {
-      return chapters[chapterIndex - 1];
-    }
-  }, [chapters, currentChapter]);
-
-  const nextChapter = useMemo(() => {
-    const chapterIndex = chapters.findIndex(
-      (chapter) => chapter.number === currentChapter
-    );
-
-    if (chapterIndex === chapters.length - 1) {
-      return null;
-    } else {
-      return chapters[chapterIndex + 1];
-    }
+    return {
+      previousChapter: chapterIndex > 0 ? chapters[chapterIndex - 1] : null,
+      nextChapter:
+        chapterIndex < chapters.length - 1 ? chapters[chapterIndex + 1] : null,
+    };
   }, [chapters, currentChapter]);
 
   const goToChapter = (chapter: string | undefined) => {
-    if (!chapter) {
-      return;
+    if (chapter) {
+      setChapterNumber(chapter);
     }
-
-    setChapterNumber(chapter);
   };
 
   return (
     <div className="flex items-center justify-between mt-6">
       <Button
+        variant="outline"
         disabled={!previousChapter}
         onClick={() => goToChapter(previousChapter?.number)}
       >
@@ -50,6 +37,7 @@ export function FooterNavigation() {
         Previous Chapter
       </Button>
       <Button
+        variant="outline"
         disabled={!nextChapter}
         onClick={() => goToChapter(nextChapter?.number)}
       >
