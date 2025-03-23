@@ -10,26 +10,28 @@ export function Bible() {
   const [chapterNumber] = useChapterNumber();
 
   return (
-    <div>
+    <>
       {verses.length > 0 ? (
-        <div className="font-reading flex flex-col gap-2">
-          <div className="flex flex-col font-sans justify-center items-center">
-            <p className="text-3xl font-bold">
-              {bookName} {chapterNumber}
-            </p>
-          </div>
+        <div>
+          <div className="font-reading flex flex-col gap-2">
+            <div className="flex flex-col font-sans justify-center items-center">
+              <p className="text-3xl font-bold">
+                {bookName} {chapterNumber}
+              </p>
+            </div>
 
-          {verses.map((verse) => (
-            <p key={verse.id}>
-              <span className="align-super mr-1 ml-2">{verse.number}</span>
-              {verse.text}
-            </p>
-          ))}
+            {verses.map((verse) => (
+              <p key={verse.id}>
+                <span className="align-super mr-1 ml-2">{verse.number}</span>
+                {verse.text}
+              </p>
+            ))}
+          </div>
+          <FooterNavigation />
         </div>
       ) : (
         <NoVerseSelected />
       )}
-      <FooterNavigation />
-    </div>
+    </>
   );
 }
