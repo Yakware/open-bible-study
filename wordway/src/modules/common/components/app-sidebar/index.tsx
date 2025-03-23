@@ -20,55 +20,63 @@ import {
   PersonStandingIcon,
   Users2Icon,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { cn } from "@/utils/cn";
+import { WordwayIcon } from "../../icons/wordway-icon";
+
+const menuItems = [
+  {
+    path: "/study",
+    name: "Study",
+    icon: <BookOpenIcon />,
+  },
+  {
+    path: "/study-groups",
+    name: "Study Groups",
+    icon: <Users2Icon />,
+  },
+  {
+    path: "/study-plans",
+    name: "Study Plans",
+    icon: <BookHeartIcon />,
+  },
+  {
+    path: "/notes",
+    name: "Notes",
+    icon: <NotebookPenIcon />,
+  },
+  {
+    path: "/community",
+    name: "Community",
+    icon: <PersonStandingIcon />,
+  },
+];
 
 export function AppSidebar() {
+  const pathname = usePathname();
+
   return (
     <Sidebar>
-      <SidebarHeader>
+      <SidebarHeader className="flex flex-row items-center justify-center gap-0">
+        <WordwayIcon size={30} />
         <h1 className="text-primary font-bold text-2xl px-1">{APP_NAME}</h1>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton size="lg" asChild>
-                  <Link href="/study">
-                    <BookOpenIcon /> Study
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton size="lg" asChild>
-                  <Link href="/study-groups">
-                    <Users2Icon /> Study Groups
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton size="lg" asChild>
-                  <Link href="/study-plans">
-                    <BookHeartIcon />
-                    Study Plans
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton size="lg" asChild>
-                  <Link href="/notes">
-                    <NotebookPenIcon />
-                    Notes
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton size="lg" asChild>
-                  <Link href="/community">
-                    <PersonStandingIcon />
-                    Community
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {menuItems.map((item) => (
+                <SidebarMenuItem
+                  key={item.path}
+                  className={cn(pathname === item.path && "font-bold")}
+                >
+                  <SidebarMenuButton size="lg" asChild>
+                    <Link href={item.path}>
+                      {item.icon} {item.name}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

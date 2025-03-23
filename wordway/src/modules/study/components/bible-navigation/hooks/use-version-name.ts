@@ -1,7 +1,7 @@
 import { useQueryState } from "nuqs";
 
-export function useBookName() {
-  const queryState = useQueryState("book", {
+export function useVersionName() {
+  const queryState = useQueryState("version", {
     shallow: false,
     history: "push",
   });

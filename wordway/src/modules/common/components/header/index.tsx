@@ -4,6 +4,7 @@ import Link from "next/link";
 import { logout } from "@/modules/auth/actions";
 import { Button, buttonVariants } from "../ui/button";
 import { useIsAuthenticated } from "@/lib/context/auth-context";
+import { WordwayIcon } from "../../icons/wordway-icon";
 
 export function Header() {
   const isAuthenticated = useIsAuthenticated();
@@ -11,9 +12,13 @@ export function Header() {
   return (
     <header className="bg-white">
       <div className="container mx-auto py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-semibold">
-          <Link href="/">{APP_NAME}</Link>
-        </h1>
+        <Link
+          href="/"
+          className="text-2xl font-semibold flex gap-1 items-center"
+        >
+          <WordwayIcon size={30} />
+          {APP_NAME}
+        </Link>
 
         <nav>
           <ul className="flex items-center gap-4">

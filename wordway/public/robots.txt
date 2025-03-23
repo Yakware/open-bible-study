@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Disallow:
+
+User-agent: Googlebot
+Allow: /
+Disallow:
+
+User-agent: Bingbot
+Allow: /
+Disallow:
+
+User-agent: Slurp
+Allow: /
+Disallow:
+
+Sitemap: /sitemap.xml
