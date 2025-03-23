@@ -23,7 +23,7 @@ export const users = pgTable(
     createdAt: timestamp("created_at").notNull().defaultNow(),
   },
   (table) => [
-    index("users_external_user_id_idx").on(table.externalUserId),
+    uniqueIndex("users_external_user_id_idx").on(table.externalUserId),
     uniqueIndex("users_email_idx").on(table.email),
   ]
 );
@@ -134,5 +134,28 @@ export const versesRelations = relations(verses, ({ one }) => ({
     references: [chapters.id],
   }),
 }));
+
+/**
+ * Notes
+ */
+export const notes = pgTable(
+  "notes",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    verseId: integer("verse_id")
+      .notNull()
+      .references(() => verses.id, { onDelete: "cascade" }),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    text: text().notNull(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+    updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  },
+  (table) => [
+    index("notes_verse_id_idx").on(table.verseId),
+    index("notes_user_id_idx").on(table.userId),
+  ]
+);
 
 export type Verse = InferSelectModel<typeof verses>;
