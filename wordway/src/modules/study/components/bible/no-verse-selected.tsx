@@ -3,6 +3,11 @@ import { BookTextIcon } from "lucide-react";
 import Link from "next/link";
 import { useVersionName } from "../bible-navigation/hooks/use-version-name";
 import { TooltipIcon } from "@/modules/common/components/tooltip-icon";
+import {
+  Container,
+  ContainerContent,
+  ContainerTitle,
+} from "@/modules/common/components/container";
 
 export function NoVerseSelected() {
   const [versionName] = useVersionName();
@@ -13,25 +18,26 @@ export function NoVerseSelected() {
   return (
     <div className="flex flex-col gap-8">
       <h3 className="font-semibold">Select a verse to get started</h3>
-      <div className="w-full bg-background p-6 rounded-lg max-w-lg">
-        <h3 className="font-bold">Recently Read</h3>
-        <div className="flex flex-col py-10 items-center justify-center text-gray-500">
+      <Container>
+        <ContainerTitle>Recently Read</ContainerTitle>
+        <ContainerContent className="flex flex-col items-center justify-center py-10">
           <BookTextIcon size={60} />
           <p className="font-semibold">No reading history yet</p>
           <p>Select a passage to begin your journey</p>
-        </div>
-      </div>
-      <div className="w-full bg-background p-6 rounded-lg max-w-lg">
-        <div className="flex gap-2 items-center">
-          <h3 className="font-bold">Popular Passages</h3>
+        </ContainerContent>
+      </Container>
+      <Container>
+        <ContainerTitle className="flex items-center gap-1">
+          Popular Passages
           <TooltipIcon
             text={`The buttons in this section use the version you've currently selected. If no version is selected, then ${fallbackVersion.replaceAll(
               "+",
               " "
             )} is used.`}
           />
-        </div>
-        <div className="flex flex-col gap-4 mt-2">
+        </ContainerTitle>
+
+        <ContainerContent className="flex flex-col gap-4 py-4">
           <div>
             <p className="mb-1 text-gray-600">Old Testament</p>
             <div className="flex gap-2">
@@ -79,8 +85,8 @@ export function NoVerseSelected() {
               </Link>
             </div>
           </div>
-        </div>
-      </div>
+        </ContainerContent>
+      </Container>
     </div>
   );
 }
