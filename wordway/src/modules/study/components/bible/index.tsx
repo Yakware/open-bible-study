@@ -2,6 +2,7 @@ import { useVerses } from "@/lib/context/study-context";
 import { NoVerseSelected } from "./no-verse-selected";
 import { useChapterNumber } from "../bible-navigation/hooks/use-chapter-number";
 import { useBookName } from "../bible-navigation/hooks/use-book-name";
+import { FooterNavigation } from "./footer-navigation";
 
 export function Bible() {
   const verses = useVerses();
@@ -28,6 +29,7 @@ export function Bible() {
       ) : (
         <NoVerseSelected />
       )}
+      <FooterNavigation />
     </div>
   );
 }

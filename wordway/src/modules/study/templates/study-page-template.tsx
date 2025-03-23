@@ -15,7 +15,7 @@ export function StudyPageTemplate() {
         <CardHeader className="p-0">
           <BibleNavigation />
         </CardHeader>
-        <CardContent className="p-0 ">
+        <CardContent className="p-0">
           <Bible />
         </CardContent>
       </Card>
