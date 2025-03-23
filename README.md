@@ -49,6 +49,12 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
+## Community
+
+Join our community channels for discussion and support:
+
+- [Discord Server](https://discord.gg/rqs7Auq2Sy)
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
