@@ -1,4 +1,5 @@
 import { StudyContextProvider } from "@/lib/context/study-context";
+import { getCurrentChapter } from "@/lib/db/queries";
 import {
   getBooks,
   getChapters,
@@ -14,16 +15,23 @@ type StudyPageProps = {
 export default async function StudyPage({ searchParams }: StudyPageProps) {
   const params = await searchParams;
 
-  const [versions, books, chapters, verses] = await Promise.all([
-    getVersions(),
-    getBooks(String(params?.version)),
-    getChapters(String(params?.version), String(params?.book)),
-    getVerses(
-      String(params?.version),
-      String(params?.book),
-      String(params?.chapter)
-    ),
-  ]);
+  const [versions, books, chapters, currentChapter, verses] = await Promise.all(
+    [
+      getVersions(),
+      getBooks(String(params?.version)),
+      getChapters(String(params?.version), String(params?.book)),
+      getCurrentChapter(
+        String(params?.version),
+        String(params?.book),
+        String(params?.chapter)
+      ),
+      getVerses(
+        String(params?.version),
+        String(params?.book),
+        String(params?.chapter)
+      ),
+    ]
+  );
 
   return (
     <StudyContextProvider
@@ -31,6 +39,7 @@ export default async function StudyPage({ searchParams }: StudyPageProps) {
       books={books}
       chapters={chapters}
       verses={verses}
+      currentChapter={currentChapter}
     >
       <StudyPageTemplate />
     </StudyContextProvider>
