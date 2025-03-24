@@ -12,3 +12,13 @@ export async function checkAuthenticated() {
 
   return isAuthenticated;
 }
+
+export async function getLoggedInUser() {
+  const { claims } = await getLogtoContext(logtoConfig);
+
+  if (!claims) {
+    throw new Error("User not found.");
+  }
+
+  return claims;
+}
