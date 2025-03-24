@@ -3,6 +3,7 @@ import { NoVerseSelected } from "./no-verse-selected";
 import { useChapterNumber } from "../bible-navigation/hooks/use-chapter-number";
 import { useBookName } from "../bible-navigation/hooks/use-book-name";
 import { FooterNavigation } from "./footer-navigation";
+import { Verse } from "./verse";
 
 export function Bible() {
   const verses = useVerses();
@@ -21,10 +22,7 @@ export function Bible() {
             </div>
 
             {verses.map((verse) => (
-              <p key={verse.id}>
-                <span className="align-super mr-1 ml-2">{verse.number}</span>
-                {verse.text}
-              </p>
+              <Verse key={verse.id} verse={verse} />
             ))}
           </div>
           <FooterNavigation />
