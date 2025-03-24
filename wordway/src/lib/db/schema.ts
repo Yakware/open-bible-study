@@ -135,6 +135,12 @@ export const versesRelations = relations(verses, ({ one }) => ({
   }),
 }));
 
+export type Verse = InferSelectModel<typeof verses> & {
+  chapter: InferSelectModel<typeof chapters>;
+  version: InferSelectModel<typeof versions>;
+  book: InferSelectModel<typeof books>;
+};
+
 /**
  * Notes
  */
@@ -157,5 +163,3 @@ export const notes = pgTable(
     index("notes_user_id_idx").on(table.userId),
   ]
 );
-
-export type Verse = InferSelectModel<typeof verses>;
