@@ -1,14 +1,14 @@
 "use server";
-import { db } from "@/lib/db";
 import {
   getAllVersions,
   getBooksByVersion,
+  getChaptersForBook,
+  getUserNotesForChapter,
   getVersesForChapter,
+  insertNote,
 } from "@/lib/db/queries";
-import { books, chapters, versions } from "@/lib/db/schema";
-import { checkAuthenticated } from "@/utils/server-utils";
-import { and, eq } from "drizzle-orm";
-import { unstable_cache } from "next/cache";
+import { Verse } from "@/lib/db/schema";
+import { checkAuthenticated, getLoggedInUser } from "@/utils/server-utils";
 
 export async function getVersions() {
   await checkAuthenticated();
@@ -33,36 +33,14 @@ export async function getChapters(versionName: string, bookName: string) {
     return [];
   }
 
-  const cachedData = unstable_cache(
-    async (versionName: string, bookName: string) => {
-      const data = await db
-        .select({
-          id: chapters.id,
-          bookId: chapters.bookId,
-          number: chapters.number,
-          position: chapters.position,
-          createdAt: chapters.createdAt,
-        })
-        .from(chapters)
-        .innerJoin(books, eq(chapters.bookId, books.id))
-        .innerJoin(versions, eq(books.versionId, versions.id))
-        .where(and(eq(versions.name, versionName), eq(books.name, bookName)))
-        .orderBy(chapters.position);
-
-      return data;
-    },
-    [],
-    { revalidate: 3600 }
-  );
-
-  return cachedData(versionName, bookName);
+  return getChaptersForBook(versionName, bookName);
 }
 
 export async function getVerses(
   versionName: string,
   bookName: string,
   chapterNumber: string
-) {
+): Promise<Verse[]> {
   await checkAuthenticated();
 
   if (!chapterNumber) {
@@ -70,4 +48,16 @@ export async function getVerses(
   }
 
   return getVersesForChapter(versionName, bookName, chapterNumber);
+}
+
+export async function createNote(verseId: number, text: string) {
+  const user = await getLoggedInUser();
+
+  return insertNote(verseId, text, user.sub);
+}
+
+export async function getNotesForChapter(chapterId: number) {
+  const user = await getLoggedInUser();
+
+  return getUserNotesForChapter(user.sub, chapterId);
 }
