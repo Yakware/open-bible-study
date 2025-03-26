@@ -7,8 +7,8 @@ import { TooltipProvider } from "@/modules/common/components/ui/tooltip";
 import { reading, sans } from "./fonts";
 import { SidebarProvider } from "@/modules/common/components/ui/sidebar";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-import { AppSidebar } from "@/modules/common/components/app-sidebar";
-import { AppHeader } from "@/modules/common/components/app-header";
+import { Sidebar } from "@/modules/common/components/sidebar";
+import { Header } from "@/modules/common/components/header";
 import { redirect } from "next/navigation";
 import "./globals.css";
 
@@ -41,9 +41,9 @@ export default async function RootLayout({
             <NuqsAdapter>
               <div className="flex">
                 <SidebarProvider>
-                  <AppSidebar />
+                  <Sidebar />
                   <main className="flex-1">
-                    <AppHeader />
+                    <Header />
                     {children}
                   </main>
                 </SidebarProvider>
