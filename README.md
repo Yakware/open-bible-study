@@ -1,6 +1,6 @@
 # Open Bible Study
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-AGPL--v3-blue)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 > ⚠️ **IMPORTANT NOTICE**: This project is under heavy development and subject to frequent and significant changes. APIs, features, and documentation may change dramatically between versions without notice. Use with caution in production environments.
@@ -55,7 +55,7 @@ Join our community channels for discussion and support:
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
+This project is licensed under the [AGPLv3 License](LICENSE) - see the LICENSE file for details.
 
 ## Acknowledgments
 
