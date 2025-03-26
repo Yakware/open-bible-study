@@ -1,4 +1,4 @@
-# Wordway
+# Open Bible Study
 
 ![Wordway Screenshot](images/wordway.png)
 
@@ -9,7 +9,7 @@
 
 ## Overview
 
-Wordway is a platform designed to break down barriers to biblical understanding. We combine powerful study tools with a vibrant, supportive community to help people of all backgrounds deepen their connection with scripture. Our mission is to transform the often intimidating experience of Bible study into an accessible, enriching journey that nurtures faith and inspires spiritual growth through modern technology and collaborative learning.
+Open Bible Study is a platform designed to break down barriers to biblical understanding. We combine powerful study tools with a vibrant, supportive community to help people of all backgrounds deepen their connection with scripture. Our mission is to transform the often intimidating experience of Bible study into an accessible, enriching journey that nurtures faith and inspires spiritual growth through modern technology and collaborative learning.
 
 ## Features
 

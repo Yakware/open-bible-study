@@ -1,4 +1,4 @@
-# Wordway Code of Conduct
+# Open Bible Study Code of Conduct
 
 ## Our Pledge
 

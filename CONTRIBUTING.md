@@ -1,6 +1,6 @@
-# Contributing to Wordway
+# Contributing to Open Bible Study
 
-First off, thank you for considering contributing to Wordway! It's people like you that help make this resource valuable to the community of believers.
+First off, thank you for considering contributing to Open Bible Study! It's people like you that help make this resource valuable to the community of believers.
 
 > ⚠️ **IMPORTANT NOTICE**: This project is under heavy development and subject to frequent changes. Please check this guide regularly for updates.
 
@@ -42,13 +42,13 @@ This section guides you through submitting a bug report. Following these guideli
 
 **Before Submitting A Bug Report**
 
-- Check the [issues](https://github.com/Yakware/wordway/issues) to see if the problem has already been reported
+- Check the [issues](https://github.com/Yakware/open-bible-study/issues) to see if the problem has already been reported
 - Try the latest version to see if the problem has been fixed
 - Collect information about the bug (steps to reproduce, expected behavior, etc.)
 
 **How Do I Submit A Good Bug Report?**
 
-Bugs are tracked as [GitHub issues](https://github.com/Yakware/wordway/issues). Create an issue and provide the following information:
+Bugs are tracked as [GitHub issues](https://github.com/Yakware/open-bible-study/issues). Create an issue and provide the following information:
 
 - Use a clear and descriptive title
 - Describe the exact steps to reproduce the problem
@@ -67,7 +67,7 @@ This section guides you through submitting an enhancement suggestion, including 
 
 **How Do I Submit A Good Enhancement Suggestion?**
 
-Enhancement suggestions are tracked as [GitHub issues](https://github.com/Yakware/wordway/issues). Create an issue and provide the following information:
+Enhancement suggestions are tracked as [GitHub issues](https://github.com/Yakware/open-bible-study/issues). Create an issue and provide the following information:
 
 - Use a clear and descriptive title
 - Provide a detailed description of the suggested enhancement
@@ -92,10 +92,10 @@ This section guides you through setting up your development environment.
 
 ```bash
 # Clone the repository
-git clone https://github.com/Yakware/wordway.git
+git clone https://github.com/Yakware/open-bible-study.git
 
 # Navigate to the repository
-cd wordway/wordway
+cd open-bible-study/wordway
 
 # Install dependencies
 npm install
@@ -134,4 +134,4 @@ Join our community channels for discussion and support:
 
 ---
 
-Thank you for your interest in contributing to Wordway. Your efforts help make Bible study more accessible to believers around the world.
+Thank you for your interest in contributing to Open Bible Study. Your efforts help make Bible study more accessible to believers around the world.
