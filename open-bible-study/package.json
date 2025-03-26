@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@tailwindcss/node": "4.0.4",
     "@tailwindcss/postcss": "4.0.4",
     "@types/node": "^20.17.25",
     "@types/pg": "^8.11.11",
