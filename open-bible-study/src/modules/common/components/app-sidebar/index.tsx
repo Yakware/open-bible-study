@@ -1,3 +1,4 @@
+"use client";
 import { APP_NAME } from "@/lib/constants";
 import {
   Sidebar,
@@ -59,7 +60,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarHeader className="flex flex-row items-center justify-center gap-0">
         <OpenbibleStudyIcon size={30} />
-        <h1 className="text-primary font-bold text-2xl px-1">{APP_NAME}</h1>
+        <h1 className="text-primary font-bold text-xl px-1">{APP_NAME}</h1>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
