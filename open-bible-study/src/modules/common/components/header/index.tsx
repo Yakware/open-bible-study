@@ -1,44 +1,18 @@
 "use client";
-import { APP_NAME } from "@/lib/constants";
-import Link from "next/link";
-import { logout } from "@/modules/auth/actions";
-import { Button, buttonVariants } from "../ui/button";
-import { useIsAuthenticated } from "@/lib/context/auth-context";
-import { OpenbibleStudyIcon } from "../../icons/open-bible-study-icon";
+import { SidebarTrigger } from "../ui/sidebar";
+import { useHeaderConfig } from "./use-header-config";
 
 export function Header() {
-  const isAuthenticated = useIsAuthenticated();
+  const { title, slot } = useHeaderConfig();
 
   return (
-    <header className="bg-white">
-      <div className="container mx-auto py-4 flex justify-between items-center">
-        <Link
-          href="/"
-          className="text-2xl font-semibold flex gap-1 items-center"
-        >
-          <OpenbibleStudyIcon size={30} />
-          {APP_NAME}
-        </Link>
-
-        <nav>
-          <ul className="flex items-center gap-4">
-            {isAuthenticated && (
-              <>
-                <li>
-                  <Link href="/study" className={buttonVariants()}>
-                    Go to App
-                  </Link>
-                </li>
-                <li>
-                  <Button variant="outline" onClick={logout}>
-                    Logout
-                  </Button>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
+    <header className="bg-white w-full p-4 flex justify-between items-center">
+      <div className="flex items-center gap-2">
+        <SidebarTrigger className="hover:cursor-pointer" />
+        {title && <h3 className="font-semibold text-xl">{title}</h3>}
       </div>
+
+      {slot && <div>{slot}</div>}
     </header>
   );
 }

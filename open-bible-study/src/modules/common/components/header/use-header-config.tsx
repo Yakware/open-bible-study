@@ -24,7 +24,7 @@ const headerConfig: Record<string, HeaderConfig> = {
   },
 };
 
-export function useAppHeaderConfig(): HeaderConfig {
+export function useHeaderConfig(): HeaderConfig {
   const pathname = usePathname();
   const config = headerConfig[pathname] || { title: "" };
   return config;

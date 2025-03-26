@@ -1,7 +1,7 @@
 "use client";
 import { APP_NAME } from "@/lib/constants";
 import {
-  Sidebar,
+  Sidebar as ShadcnSidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
@@ -53,11 +53,11 @@ const menuItems = [
   },
 ];
 
-export function AppSidebar() {
+export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <Sidebar>
+    <ShadcnSidebar>
       <SidebarHeader className="flex flex-row items-center justify-center gap-0">
         <OpenbibleStudyIcon size={30} />
         <h1 className="text-primary font-bold text-xl px-1">{APP_NAME}</h1>
@@ -85,6 +85,6 @@ export function AppSidebar() {
       <SidebarFooter>
         <Button onClick={logout}>Logout</Button>
       </SidebarFooter>
-    </Sidebar>
+    </ShadcnSidebar>
   );
 }
