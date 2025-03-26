@@ -1,7 +1,5 @@
 # Open Bible Study
 
-![Wordway Screenshot](images/wordway.png)
-
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
