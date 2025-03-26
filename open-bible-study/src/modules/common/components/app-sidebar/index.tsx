@@ -1,3 +1,4 @@
+"use client";
 import { APP_NAME } from "@/lib/constants";
 import {
   Sidebar,
@@ -22,7 +23,7 @@ import {
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/utils/cn";
-import { WordwayIcon } from "../../icons/wordway-icon";
+import { OpenbibleStudyIcon } from "../../icons/open-bible-study-icon";
 
 const menuItems = [
   {
@@ -58,8 +59,8 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="flex flex-row items-center justify-center gap-0">
-        <WordwayIcon size={30} />
-        <h1 className="text-primary font-bold text-2xl px-1">{APP_NAME}</h1>
+        <OpenbibleStudyIcon size={30} />
+        <h1 className="text-primary font-bold text-xl px-1">{APP_NAME}</h1>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

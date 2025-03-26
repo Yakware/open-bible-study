@@ -1,6 +1,6 @@
 import { CommonIconProps } from "./common-icon-props";
 
-export function WordwayIcon({ size = 50 }: CommonIconProps) {
+export function OpenbibleStudyIcon({ size = 50 }: CommonIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

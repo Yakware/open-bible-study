@@ -4,7 +4,7 @@ import Link from "next/link";
 import { logout } from "@/modules/auth/actions";
 import { Button, buttonVariants } from "../ui/button";
 import { useIsAuthenticated } from "@/lib/context/auth-context";
-import { WordwayIcon } from "../../icons/wordway-icon";
+import { OpenbibleStudyIcon } from "../../icons/open-bible-study-icon";
 
 export function Header() {
   const isAuthenticated = useIsAuthenticated();
@@ -16,7 +16,7 @@ export function Header() {
           href="/"
           className="text-2xl font-semibold flex gap-1 items-center"
         >
-          <WordwayIcon size={30} />
+          <OpenbibleStudyIcon size={30} />
           {APP_NAME}
         </Link>
 
