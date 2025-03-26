@@ -95,7 +95,7 @@ This section guides you through setting up your development environment.
 git clone https://github.com/Yakware/open-bible-study.git
 
 # Navigate to the repository
-cd open-bible-study/wordway
+cd open-bible-study/open-bible-study
 
 # Install dependencies
 npm install

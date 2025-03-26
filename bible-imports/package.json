@@ -1,5 +1,5 @@
 {
-  "name": "@wordway/bible-imports",
+  "name": "@open-bible-study/bible-imports",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

@@ -10,7 +10,7 @@
     "dev": "concurrently --prefix-colors \"bgBlue.bold,bgGreen.bold\" \"npm:dev:*\"",
     "lint": "eslint src/**/*.ts"
   },
-  "author": "Wordway Team",
+  "author": "Yakware",
   "description": "WebSocket server delivering DB updates",
   "dependencies": {
     "pino": "^9.6.0",
