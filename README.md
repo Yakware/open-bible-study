@@ -54,7 +54,7 @@ Join our community channels for discussion and support:
 
 ## License
 
-This project is licensed under the [SSPLv1 License](LICENSE) - see the LICENSE file for details.
+This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
 
 ## Acknowledgments
 

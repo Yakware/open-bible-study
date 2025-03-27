@@ -2,7 +2,7 @@
   "name": "realtime-server",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "SSPL-1",
+  "license": "MIT",
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc",
