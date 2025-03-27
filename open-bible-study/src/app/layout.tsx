@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
-import { APP_NAME } from "@/lib/constants";
 import { AuthContextProvider } from "@/lib/context/auth-context";
 import { getLogtoContext } from "@logto/next/server-actions";
 import { logtoConfig } from "./logto";
 import { TooltipProvider } from "@/modules/common/components/ui/tooltip";
-import { reading, sans } from "./fonts";
 import { SidebarProvider } from "@/modules/common/components/ui/sidebar";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Sidebar } from "@/modules/common/components/sidebar";
 import { Header } from "@/modules/common/components/header";
 import { redirect } from "next/navigation";
+
+import type { Metadata } from "next";
+import { APP_NAME } from "@/lib/constants";
+import { reading, sans } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
