@@ -2,6 +2,7 @@
   "name": "@open-bible-study/bible-imports",
   "version": "1.0.0",
   "main": "index.js",
+  "license": "SSPL-1",
   "scripts": {
     "start": "npm run db:pull && tsx -r dotenv/config src/index.ts",
     "db:pull": "drizzle-kit pull"

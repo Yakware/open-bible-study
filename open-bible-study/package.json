@@ -2,6 +2,7 @@
   "name": "open-bible-study",
   "version": "0.1.0",
   "private": true,
+  "license": "SSPL-1",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
