@@ -8,6 +8,17 @@ import {
   uniqueIndex,
 } from "drizzle-orm/pg-core";
 
+export const users = pgTable("users", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  email: text().notNull().unique(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  onboardingCompletedAt: timestamp("onboarding_completed_at"),
+  externalUserId: text("external_user_id").notNull().unique(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  deletedAt: timestamp("deleted_at"),
+});
+
 /**
  * Versions
  */

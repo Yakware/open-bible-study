@@ -1,8 +1,8 @@
-import { buttonVariants } from "@/modules/common/components/ui/button";
 import { BookTextIcon } from "lucide-react";
 import Link from "next/link";
 import { useVersionName } from "../bible-navigation/hooks/use-version-name";
-import { TooltipIcon } from "@/modules/common/components/tooltip-icon";
+import { TooltipIcon } from "@/components/tooltip-icon";
+import { buttonVariants } from "@/components/ui/button";
 
 export function NoVerseSelected() {
   const [versionName] = useVersionName();

@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { useChapters } from "@/lib/context/study-context";
-import { Button } from "@/modules/common/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useChapterNumber } from "../bible-navigation/hooks/use-chapter-number";
+import { Button } from "@/components/ui/button";
 
 export function FooterNavigation() {
   const [currentChapter, setChapterNumber] = useChapterNumber();

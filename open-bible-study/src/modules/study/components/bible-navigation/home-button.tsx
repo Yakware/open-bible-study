@@ -1,7 +1,7 @@
-import { Button } from "@/modules/common/components/ui/button";
 import { HomeIcon } from "lucide-react";
 import { useBookName } from "./hooks/use-book-name";
 import { useChapterNumber } from "./hooks/use-chapter-number";
+import { Button } from "@/components/ui/button";
 
 export function HomeButton() {
   const [, setBookName] = useBookName();

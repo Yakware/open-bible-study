@@ -1,9 +1,5 @@
 "use client";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "@/modules/common/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Bible } from "../components/bible";
 import { BibleNavigation } from "../components/bible-navigation";
 import { StudyTools } from "../components/study-tools";

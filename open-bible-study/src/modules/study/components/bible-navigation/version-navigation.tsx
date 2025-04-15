@@ -3,7 +3,7 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuTrigger,
-} from "@/modules/common/components/ui/navigation-menu";
+} from "@/components/ui/navigation-menu";
 import { useVersions } from "@/lib/context/study-context";
 import { useVersionName } from "./hooks/use-version-name";
 

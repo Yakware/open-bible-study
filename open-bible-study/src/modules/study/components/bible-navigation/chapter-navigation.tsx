@@ -3,7 +3,7 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuTrigger,
-} from "@/modules/common/components/ui/navigation-menu";
+} from "@/components/ui/navigation-menu";
 import { useChapters } from "@/lib/context/study-context";
 import { useChapterNumber } from "./hooks/use-chapter-number";
 import { useBookName } from "./hooks/use-book-name";

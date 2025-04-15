@@ -1,13 +1,13 @@
+import { useBooks } from "@/lib/context/study-context";
+import { useBookName } from "./hooks/use-book-name";
+import { useChapterNumber } from "./hooks/use-chapter-number";
+import { useVersionName } from "./hooks/use-version-name";
 import {
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuTrigger,
-} from "@/modules/common/components/ui/navigation-menu";
-import { useBooks } from "@/lib/context/study-context";
-import { useBookName } from "./hooks/use-book-name";
-import { useChapterNumber } from "./hooks/use-chapter-number";
-import { useVersionName } from "./hooks/use-version-name";
+} from "@/components/ui/navigation-menu";
 
 export function BookNavigation() {
   const books = useBooks();
