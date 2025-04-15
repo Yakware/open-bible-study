@@ -6,8 +6,9 @@ import { AuthContextProvider } from "@/lib/context/auth-context";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { ReactNode } from "react";
-import { Sidebar, SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { Header } from "@/components/header";
+import { Sidebar } from "@/components/sidebar";
 
 type DashboardLayoutProps = {
   children: ReactNode;
