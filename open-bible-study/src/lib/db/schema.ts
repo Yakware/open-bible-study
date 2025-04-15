@@ -11,8 +11,7 @@ import {
 export const users = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   email: text().notNull().unique(),
-  firstName: text("first_name").notNull(),
-  lastName: text("last_name").notNull(),
+  name: text(),
   onboardingCompletedAt: timestamp("onboarding_completed_at"),
   externalUserId: text("external_user_id").notNull().unique(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
