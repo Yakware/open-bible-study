@@ -12,7 +12,7 @@ import {
   SidebarMenuItem,
 } from "../ui/sidebar";
 import { Button } from "../ui/button";
-import { logout } from "@/modules/auth/actions";
+import { logout } from "@/features/auth/actions";
 import Link from "next/link";
 import {
   BookHeartIcon,

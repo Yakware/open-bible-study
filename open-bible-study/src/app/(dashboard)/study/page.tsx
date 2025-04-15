@@ -4,8 +4,8 @@ import {
   getChapters,
   getVerses,
   getVersions,
-} from "@/modules/study/actions";
-import { StudyPageTemplate } from "@/modules/study/templates/study-page-template";
+} from "@/features/study/actions";
+import { StudyPageTemplate } from "@/features/study/templates/study-page-template";
 
 type StudyPageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
