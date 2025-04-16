@@ -140,7 +140,7 @@ export function Sidebar() {
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <a href="https://discord.gg/rqs7Auq2Sy" target="_blank">
-                Support
+                Discord
               </a>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
