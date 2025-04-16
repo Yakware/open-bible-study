@@ -1,15 +1,60 @@
 "use server";
 
-import { logtoConfig } from "@/app/logto";
-import { signIn, signOut } from "@logto/next/server-actions";
+import { auth } from "@/lib/auth";
+import {
+  registrationFormSchema,
+  RegistrationFormValues,
+} from "./components/registration-form/registration-form-schema";
+import { headers } from "next/headers";
+import { serverActionError } from "@/utils/server-action-error";
+import {
+  loginFormSchema,
+  LoginFormValues,
+} from "./components/login-form/login-form-schema";
 
-export async function login() {
-  await signIn(logtoConfig, {
-    redirectUri: logtoConfig.baseUrl + "/callback",
-    postRedirectUri: logtoConfig.baseUrl,
-  });
+export async function login(values: LoginFormValues) {
+  try {
+    const { data: validated, error } = await loginFormSchema.safeParseAsync(
+      values
+    );
+
+    if (error) {
+      return { data: null, error: "Failed validation" };
+    }
+
+    const data = await auth.api.signInEmail({
+      headers: await headers(),
+      body: validated,
+    });
+
+    return { data, error: null };
+  } catch (error) {
+    return serverActionError(error);
+  }
+}
+
+export async function register(values: RegistrationFormValues) {
+  try {
+    const { data: validated, error } =
+      await registrationFormSchema.safeParseAsync(values);
+
+    if (error) {
+      return { data: null, error: "Failed validation" };
+    }
+
+    const data = await auth.api.signUpEmail({
+      headers: await headers(),
+      body: validated,
+    });
+
+    return { data, error: null };
+  } catch (error) {
+    return serverActionError(error);
+  }
 }
 
 export async function logout() {
-  await signOut(logtoConfig);
+  await auth.api.signOut({
+    headers: await headers(),
+  });
 }
