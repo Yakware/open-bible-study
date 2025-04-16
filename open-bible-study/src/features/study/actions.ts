@@ -1,13 +1,10 @@
 "use server";
 import { db } from "@/lib/db";
 import { books, chapters, verses, versions } from "@/lib/db/schema";
-import { checkAuthenticated } from "@/utils/server-utils";
 import { and, eq } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 
 export async function getVersions() {
-  await checkAuthenticated();
-
   const cachedData = unstable_cache(
     async () => {
       const data = await db.select().from(versions);
@@ -22,8 +19,6 @@ export async function getVersions() {
 }
 
 export async function getBooks(versionName: string) {
-  await checkAuthenticated();
-
   if (!versionName) {
     return [];
   }
@@ -55,8 +50,6 @@ export async function getBooks(versionName: string) {
 }
 
 export async function getChapters(versionName: string, bookName: string) {
-  await checkAuthenticated();
-
   if (!bookName || !versionName) {
     return [];
   }
@@ -91,8 +84,6 @@ export async function getVerses(
   bookName: string,
   chapterNumber: string
 ) {
-  await checkAuthenticated();
-
   if (!chapterNumber) {
     return [];
   }
