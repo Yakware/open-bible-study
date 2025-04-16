@@ -76,7 +76,7 @@ export function Sidebar() {
 
   return (
     <ShadcnSidebar>
-      <SidebarHeader className="flex flex-row items-center justify-center gap-0">
+      <SidebarHeader className="flex flex-row items-center gap-0">
         <OpenbibleStudyIcon size={30} />
         <h1 className="text-primary font-bold text-xl px-1">{APP_NAME}</h1>
       </SidebarHeader>
