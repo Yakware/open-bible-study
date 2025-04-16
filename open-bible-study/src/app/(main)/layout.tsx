@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { Sidebar } from "@/components/sidebar";
 import { redirect } from "next/navigation";
 import { getUserSession } from "@/data-access/user";
+import { AuthContextProvider } from "@/lib/context/auth-context";
 
 type DashboardLayoutProps = {
   children: ReactNode;
@@ -14,25 +15,27 @@ type DashboardLayoutProps = {
 export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
-  const session = await getUserSession();
+  const { session, user } = await getUserSession();
 
   if (!session) {
     redirect("/login");
   }
 
   return (
-    <TooltipProvider>
-      <NuqsAdapter>
-        <div className="flex">
-          <SidebarProvider>
-            <Sidebar />
-            <main className="flex-1">
-              <Header />
-              {children}
-            </main>
-          </SidebarProvider>
-        </div>
-      </NuqsAdapter>
-    </TooltipProvider>
+    <AuthContextProvider session={session} user={user}>
+      <TooltipProvider>
+        <NuqsAdapter>
+          <div className="flex">
+            <SidebarProvider>
+              <Sidebar />
+              <main className="flex-1">
+                <Header />
+                {children}
+              </main>
+            </SidebarProvider>
+          </div>
+        </NuqsAdapter>
+      </TooltipProvider>
+    </AuthContextProvider>
   );
 }

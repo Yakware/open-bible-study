@@ -6,7 +6,7 @@ type AuthLayoutProps = {
 };
 
 export default async function AuthLayout({ children }: AuthLayoutProps) {
-  const session = await getUserSession();
+  const { session } = await getUserSession();
 
   if (session) {
     redirect("/study");
