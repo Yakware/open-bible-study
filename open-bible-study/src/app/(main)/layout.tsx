@@ -5,7 +5,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { Header } from "@/components/header";
 import { Sidebar } from "@/components/sidebar";
 import { redirect } from "next/navigation";
-import { getUserSession } from "@/data-access/user";
+import { getUserSession } from "@/data-access/users";
 import { AuthContextProvider } from "@/lib/context/auth-context";
 
 type DashboardLayoutProps = {

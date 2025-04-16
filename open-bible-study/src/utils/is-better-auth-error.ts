@@ -1,12 +1,5 @@
-type BetterAuthError = {
-  status: string;
-  body: {
-    code: string;
-    message: string;
-  };
-  statusCode: number;
-};
+import { APIError } from "better-auth";
 
-export function isBetterAuthError(error: unknown): error is BetterAuthError {
+export function isBetterAuthError(error: unknown): error is APIError {
   return error != null && typeof error === "object" && "body" in error;
 }
