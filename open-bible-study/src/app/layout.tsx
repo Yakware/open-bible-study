@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { APP_NAME } from "@/lib/constants";
 import { reading, sans } from "./fonts";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${sans.variable} ${reading.variable} antialiased`}>
         {children}
+        <Toaster />
       </body>
     </html>
   );
