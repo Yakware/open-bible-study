@@ -1,8 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
-import { db } from "../lib/db";
-import { books, chapters, verses, versions } from "../lib/db/schema";
-import bookNames from "../data/book-names.json";
+import { db } from "../../src/lib/db";
+import { books, chapters, verses, versions } from "../../src/lib/db/schema";
+import bookNames from "./data/book-names.json";
 
 type VerseJson = {
   verse: string;
@@ -19,13 +19,7 @@ type BookJson = {
   chapters: ChapterJson[];
 };
 
-export const runKjvEtl = async () => {
-  // const data = await db
-  //   .select({
-  //     id: versions.id,
-  //   })
-  //   .from(versions)
-
+async function seedKjv() {
   const data = await db
     .insert(versions)
     .values({
@@ -46,7 +40,7 @@ export const runKjvEtl = async () => {
     bookNames.map(async (bookName, bookIndex) => {
       const fileName = bookName.name.replace(/ /g, "-") + ".json";
       const rawJson = await fs.readFile(
-        path.join(__dirname, "..", "data", "kjv", fileName)
+        path.join(__dirname, "data", "books", fileName)
       );
       const bookJson: BookJson = JSON.parse(rawJson.toString());
 
@@ -94,4 +88,6 @@ export const runKjvEtl = async () => {
       );
     })
   );
-};
+}
+
+seedKjv();
