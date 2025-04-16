@@ -1,4 +1,4 @@
-import { getUserSession } from "@/data-access/user";
+import { getUserSession } from "@/data-access/users";
 import { redirect } from "next/navigation";
 
 type AuthLayoutProps = {

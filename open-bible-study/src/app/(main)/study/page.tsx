@@ -1,9 +1,9 @@
 import { StudyContextProvider } from "@/lib/context/study-context";
 import { StudyPageTemplate } from "@/features/study/templates/study-page-template";
-import { getBooksByVersion } from "@/data-access/book";
-import { getVersions } from "@/data-access/version";
-import { getChaptersByVersionBook } from "@/data-access/chapter";
-import { getVersesByVersionBookChapter } from "@/data-access/verse";
+import { getBooksByVersion } from "@/data-access/books";
+import { getVersions } from "@/data-access/versions";
+import { getChaptersByVersionBook } from "@/data-access/chapters";
+import { getVersesByVersionBookChapter } from "@/data-access/verses";
 
 type StudyPageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
