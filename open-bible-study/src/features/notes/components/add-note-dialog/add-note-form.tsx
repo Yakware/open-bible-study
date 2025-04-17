@@ -15,10 +15,11 @@ type AddNoteFormProps = {
   verseId: number;
 };
 
-export function AddNoteForm({}: AddNoteFormProps) {
+export function AddNoteForm({ verseId }: AddNoteFormProps) {
   const form = useForm<AddNoteFormValues>({
     defaultValues: {
       content: "",
+      verseId,
     },
     resolver: zodResolver(addNoteFormSchema),
   });
