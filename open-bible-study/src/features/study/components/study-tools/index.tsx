@@ -1,4 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { NotesTab } from "./notes";
 
 export function StudyTools() {
   return (
@@ -8,9 +9,11 @@ export function StudyTools() {
         <TabsTrigger value="bookmarks">Bookmarks</TabsTrigger>
         <TabsTrigger value="cross-references">Cross References</TabsTrigger>
       </TabsList>
-      <TabsContent value="notes">Notes tab</TabsContent>
-      <TabsContent value="bookmarks">Bookmarks tab</TabsContent>
-      <TabsContent value="cross-references">Cross references tab</TabsContent>
+      <TabsContent value="notes">
+        <NotesTab />
+      </TabsContent>
+      <TabsContent value="bookmarks"></TabsContent>
+      <TabsContent value="cross-references"></TabsContent>
     </Tabs>
   );
 }
