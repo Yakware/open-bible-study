@@ -1,4 +1,4 @@
-import { InferSelectModel, relations } from "drizzle-orm";
+import { InferInsertModel, InferSelectModel, relations } from "drizzle-orm";
 import {
   integer,
   pgTable,
@@ -21,6 +21,8 @@ export const users = pgTable("users", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
+
+export type User = InferSelectModel<typeof users>;
 
 export const sessions = pgTable(
   "sessions",
@@ -205,3 +207,6 @@ export const notes = pgTable(
     index("notes_user_id_idx").on(table.userId),
   ]
 );
+
+export type Note = InferSelectModel<typeof notes>;
+export type InsertNote = InferInsertModel<typeof notes>;
