@@ -7,6 +7,7 @@ import { Sidebar } from "@/components/sidebar";
 import { redirect } from "next/navigation";
 import { getUserSession } from "@/data-access/users";
 import { AuthContextProvider } from "@/lib/context/auth-context";
+import { Provider } from "@/lib/context/provider.client";
 
 type DashboardLayoutProps = {
   children: ReactNode;
@@ -23,19 +24,21 @@ export default async function DashboardLayout({
 
   return (
     <AuthContextProvider session={session} user={user}>
-      <TooltipProvider>
-        <NuqsAdapter>
-          <div className="flex">
-            <SidebarProvider>
-              <Sidebar />
-              <main className="flex-1">
-                <Header />
-                {children}
-              </main>
-            </SidebarProvider>
-          </div>
-        </NuqsAdapter>
-      </TooltipProvider>
+      <Provider>
+        <TooltipProvider>
+          <NuqsAdapter>
+            <div className="flex">
+              <SidebarProvider>
+                <Sidebar />
+                <main className="flex-1">
+                  <Header />
+                  {children}
+                </main>
+              </SidebarProvider>
+            </div>
+          </NuqsAdapter>
+        </TooltipProvider>
+      </Provider>
     </AuthContextProvider>
   );
 }
