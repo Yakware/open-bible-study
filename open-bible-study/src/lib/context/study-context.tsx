@@ -7,6 +7,9 @@ type StudyContext = {
   books: Book[];
   chapters: Chapter[];
   verses: Verse[];
+  currentVersion: Version | null;
+  currentBook: Book | null;
+  currentChapter: Chapter | null;
 };
 
 const studyContext = createContext<StudyContext | undefined>(undefined);
@@ -18,6 +21,9 @@ type StudyContextProviderProps = {
   books: Book[];
   chapters: Chapter[];
   verses: Verse[];
+  currentVersion: Version | null;
+  currentBook: Book | null;
+  currentChapter: Chapter | null;
   children: ReactNode;
 };
 
@@ -27,12 +33,38 @@ export function StudyContextProvider({
   books,
   chapters,
   verses,
+  currentVersion,
+  currentBook,
+  currentChapter,
 }: StudyContextProviderProps) {
   return (
-    <Provider value={{ versions, books, chapters, verses }}>
+    <Provider
+      value={{
+        versions,
+        books,
+        chapters,
+        verses,
+        currentBook,
+        currentChapter,
+        currentVersion,
+      }}
+    >
       {children}
     </Provider>
   );
+}
+
+export function useStudyContext() {
+  const context = useContext(studyContext);
+  if (!context) {
+    throw new Error(
+      "useStudyContext must be used inside of an StudyContextProvider"
+    );
+  }
+
+  const { currentBook, currentChapter, currentVersion } = context;
+
+  return { currentBook, currentChapter, currentVersion };
 }
 
 export function useVersions() {
