@@ -10,6 +10,8 @@ import { useForm } from "react-hook-form";
 import { addNoteFormSchema, AddNoteFormValues } from "./add-note-form-schema";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { createNote } from "../../actions";
 
 type AddNoteFormProps = {
   verseId: number;
@@ -24,8 +26,14 @@ export function AddNoteForm({ verseId }: AddNoteFormProps) {
     resolver: zodResolver(addNoteFormSchema),
   });
 
-  const handleSubmit = (values: AddNoteFormValues) => {
-    console.log(values);
+  const handleSubmit = async (values: AddNoteFormValues) => {
+    try {
+      await createNote(values);
+      toast.success("Note created");
+    } catch (error) {
+      console.error(error);
+      toast.error("Unable to create note");
+    }
   };
 
   return (
