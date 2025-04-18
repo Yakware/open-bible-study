@@ -1,9 +1,9 @@
 import { StudyContextProvider } from "@/lib/context/study-context";
 import { StudyPageTemplate } from "@/features/study/templates/study-page-template";
-import { getBooksByVersion } from "@/data-access/books";
-import { getVersions } from "@/data-access/versions";
-import { getChaptersByVersionBook } from "@/data-access/chapters";
-import { getVersesByVersionBookChapter } from "@/data-access/verses";
+import { getBook, getBooks } from "@/data-access/books";
+import { getVersion, getVersions } from "@/data-access/versions";
+import { getChapter, getChapters } from "@/data-access/chapters";
+import { getVerses } from "@/data-access/verses";
 
 type StudyPageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -11,16 +11,21 @@ type StudyPageProps = {
 
 export default async function StudyPage({ searchParams }: StudyPageProps) {
   const params = await searchParams;
+  const version = String(params?.version);
+  const book = String(params?.book);
+  const chapter = String(params?.chapter);
 
   const [versions, books, chapters, verses] = await Promise.all([
     getVersions(),
-    getBooksByVersion(String(params?.version)),
-    getChaptersByVersionBook(String(params?.version), String(params?.book)),
-    getVersesByVersionBookChapter(
-      String(params?.version),
-      String(params?.book),
-      String(params?.chapter)
-    ),
+    getBooks(version),
+    getChapters(version, book),
+    getVerses(version, book, chapter),
+  ]);
+
+  const [currentVersion, currentBook, currentChapter] = await Promise.all([
+    getVersion(version),
+    getBook(version, book),
+    getChapter(version, book, chapter),
   ]);
 
   return (
@@ -29,6 +34,9 @@ export default async function StudyPage({ searchParams }: StudyPageProps) {
       books={books}
       chapters={chapters}
       verses={verses}
+      currentVersion={currentVersion}
+      currentBook={currentBook}
+      currentChapter={currentChapter}
     >
       <StudyPageTemplate />
     </StudyContextProvider>
