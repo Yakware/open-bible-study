@@ -1,15 +1,15 @@
 import { db } from "@/lib/db";
-import { books, chapters, verses, versions } from "@/lib/db/schema";
+import { books, chapters, Verse, verses, versions } from "@/lib/db/schema";
 import { and, eq } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 
 const revalidate = 3600;
 
-export async function getVersesByVersionBookChapter(
+export async function getVerses(
   versionName: string,
   bookName: string,
   chapterNumber: string
-) {
+): Promise<Verse[]> {
   if (!chapterNumber) {
     return [];
   }
@@ -23,6 +23,7 @@ export async function getVersesByVersionBookChapter(
           number: verses.number,
           text: verses.text,
           createdAt: verses.createdAt,
+          updatedAt: verses.updatedAt,
         })
         .from(verses)
         .innerJoin(chapters, eq(verses.chapterId, chapters.id))
