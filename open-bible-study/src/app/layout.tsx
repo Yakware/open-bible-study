@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { APP_NAME, UMAMI_SRC, UMAMI_WEBSITE_ID } from "@/lib/constants";
 import { reading, sans } from "./fonts";
 import { Toaster } from "@/components/ui/sonner";
-import "./globals.css";
 import Script from "next/script";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: APP_NAME,
