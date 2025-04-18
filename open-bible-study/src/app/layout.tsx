@@ -8,11 +8,6 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: APP_NAME,
   description: "Illuminate Your Spiritual Journey, One Verse at a Time",
-  icons: {
-    icon: "/favicon-32x32.png",
-    apple: "/apple-touch-icon.png",
-  },
-  manifest: "/site.webmanifest",
 };
 
 export default async function RootLayout({
