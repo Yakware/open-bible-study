@@ -210,3 +210,9 @@ export const notes = pgTable(
 
 export type Note = InferSelectModel<typeof notes>;
 export type InsertNote = InferInsertModel<typeof notes>;
+export type NoteWithRelations = Note & {
+  version: Version;
+  chapter: Chapter;
+  book: Book;
+  verse: Verse;
+};
