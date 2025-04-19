@@ -1,16 +1,12 @@
 import { db } from "@/lib/db";
 import {
-  Book,
   books,
-  Chapter,
   chapters,
   InsertNote,
-  Note,
   notes,
+  NoteWithRelations,
   users,
-  Verse,
   verses,
-  Version,
   versions,
 } from "@/lib/db/schema";
 import { and, eq } from "drizzle-orm";
@@ -19,12 +15,16 @@ export async function createNote(newNote: InsertNote) {
   await db.insert(notes).values(newNote);
 }
 
-type NoteWithRelations = Note & {
-  version: Version;
-  chapter: Chapter;
-  book: Book;
-  verse: Verse;
-};
+export async function updateNote(id: number, userId: string, content: string) {
+  await db
+    .update(notes)
+    .set({ content })
+    .where(and(eq(notes.id, id), eq(notes.userId, userId)));
+}
+
+export async function deleteNote(id: number, userId: string) {
+  await db.delete(notes).where(and(eq(notes.id, id), eq(notes.userId, userId)));
+}
 
 export async function getNotesByUserIdChapterId(
   userId: string,
